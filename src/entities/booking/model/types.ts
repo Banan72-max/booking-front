@@ -8,6 +8,8 @@ export interface Booking {
   userId: string;
   listingId: string;
   listing?: Listing;
+  /** Кто бронировал — присутствует только в админском списке всех бронирований. */
+  user?: { id: string; name: string; email: string };
   payment?: Payment | null;
   dateFrom: string;
   dateTo: string;

@@ -15,7 +15,10 @@ export function SearchFilters() {
         placeholder="Все категории"
         value={filters.categoryId ?? ''}
         onChange={(v) => setFilter('categoryId', v || undefined)}
-        options={categories.map((c) => ({ label: `${c.icon} ${c.name}`, value: c.id }))}
+        options={[
+          { label: 'Все категории', value: '' },
+          ...categories.map((c) => ({ label: `${c.icon} ${c.name}`, value: c.id })),
+        ]}
       />
       <Input
         label="Цена до"

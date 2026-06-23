@@ -10,4 +10,6 @@ export const userApi = {
   update: (id: string, dto: Partial<Pick<User, 'name' | 'avatar'>>) =>
     axiosInstance.patch<User>(`/api/users/${id}`, dto).then((r) => r.data),
   remove: (id: string) => axiosInstance.delete(`/api/users/${id}`),
+  setBanned: (id: string, isBanned: boolean) =>
+    axiosInstance.patch<User>(`/api/users/${id}/ban`, { isBanned }).then((r) => r.data),
 };

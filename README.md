@@ -70,3 +70,11 @@ npm run preview
 ```bash
 npm run lint
 ```
+
+## Команда
+
+| Роль | Имя | Зона ответственности |
+|---|---|---|
+| Frontend Developer | **Дима** | React + FSD, Tailwind UI-kit, Zustand, интеграция с API, деплой на Vercel |
+| Backend Developer | **Андрей** | Express + TypeScript, Prisma + БД, JWT-авторизация, Zod-валидация, Swagger, деплой на Railway |
+| QA / Test Engineer | **Витя** | Vitest unit-тесты, Supertest интеграционные тесты, Postman-коллекция, CI, покрытие ≥70% |

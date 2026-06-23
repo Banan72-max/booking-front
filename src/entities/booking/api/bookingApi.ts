@@ -9,4 +9,6 @@ export const bookingApi = {
   update: (id: string, dto: { dateFrom?: string; dateTo?: string }) =>
     axiosInstance.patch<Booking>(`/api/bookings/${id}`, dto).then((r) => r.data),
   cancel: (id: string) => axiosInstance.delete<Booking>(`/api/bookings/${id}`).then((r) => r.data),
+  getAllForAdmin: () => axiosInstance.get<Booking[]>('/api/bookings/admin/all').then((r) => r.data),
+  hardDelete: (id: string) => axiosInstance.delete(`/api/bookings/${id}/admin`),
 };

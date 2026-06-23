@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useAuthStore } from '../../app/store/authStore';
 import { useCreateBooking } from '../../features/booking-crud';
 import { DatePicker } from '../../shared/ui/DatePicker/DatePicker';
 import { Button } from '../../shared/ui/Button/Button';
+import { expandDateRanges } from '../../shared/lib/formatDate';
 import type { Listing } from '../../entities/listing';
 
 export function BookingForm({ listing }: { listing: Listing }) {
@@ -12,6 +13,9 @@ export function BookingForm({ listing }: { listing: Listing }) {
   const { mutate, isPending } = useCreateBooking();
 
   const isOwnListing = user?.id === listing.ownerId;
+
+  // Уже занятые даты этого объекта (из API) — блокируются в DatePicker.
+  const disabledDates = useMemo(() => expandDateRanges(listing.bookings ?? []), [listing.bookings]);
 
   if (isOwnListing) {
     return <p className="text-sm text-muted">Нельзя забронировать собственный объект.</p>;
@@ -23,8 +27,14 @@ export function BookingForm({ listing }: { listing: Listing }) {
 
   return (
     <div className="flex flex-col gap-3 rounded-xl border border-border bg-surface-2 p-4">
-      <DatePicker label="Заезд" value={dateFrom} onChange={setDateFrom} minDate={new Date().toISOString().slice(0, 10)} />
-      <DatePicker label="Выезд" value={dateTo} onChange={setDateTo} minDate={dateFrom} />
+      <DatePicker
+        label="Заезд"
+        value={dateFrom}
+        onChange={setDateFrom}
+        minDate={new Date().toISOString().slice(0, 10)}
+        disabledDates={disabledDates}
+      />
+      <DatePicker label="Выезд" value={dateTo} onChange={setDateTo} minDate={dateFrom} disabledDates={disabledDates} />
       <Button
         isLoading={isPending}
         disabled={!dateFrom || !dateTo}

@@ -2,6 +2,7 @@ import { AppProviders } from './providers/AppProviders';
 import { AppRoutes } from './router/routes';
 import { Header } from '../widgets/header/Header';
 import { Footer } from '../widgets/footer/Footer';
+import { SupportWidget } from '../widgets/support-widget/SupportWidget';
 
 export default function App() {
   return (
@@ -12,6 +13,7 @@ export default function App() {
           <AppRoutes />
         </main>
         <Footer />
+        <SupportWidget />
       </div>
     </AppProviders>
   );

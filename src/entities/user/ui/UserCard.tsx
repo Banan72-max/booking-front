@@ -7,7 +7,9 @@ export function UserCard({ user }: { user: User }) {
         {user.name.slice(0, 1).toUpperCase()}
       </div>
       <div>
-        <p className="text-sm font-semibold">{user.name}</p>
+        <p className="text-sm font-semibold">
+          {user.name} {user.isBanned && <span className="text-destructive">(забанен)</span>}
+        </p>
         <p className="text-xs text-muted">{user.email} · {user.role}</p>
       </div>
     </div>

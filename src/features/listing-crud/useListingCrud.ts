@@ -1,6 +1,10 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 import { listingApi } from '../../entities/listing';
+
+export function useMyListings() {
+  return useQuery({ queryKey: ['listings', 'mine'], queryFn: listingApi.getMine });
+}
 
 export function useCreateListing() {
   const qc = useQueryClient();
